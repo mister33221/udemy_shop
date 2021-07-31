@@ -1,0 +1,87 @@
+<div class="page-wrapper">
+
+  <!-- MENU SIDEBAR-->
+  <aside class="menu-sidebar d-none d-lg-block">
+    <div class="logo">
+      <a href="#">
+        <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
+      </a>
+    </div>
+
+    <!--version 1-->
+    <!-- <div class="menu-sidebar-content js-scrollbar1">
+      <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar-list">
+          <li>
+            <a routerLink="/category/1" routerLintActive="active-link">Books</a>
+          </li>
+          <li>
+            <a routerLink="/category/2" routerLintActive="active-link">Coffee Mugs</a>
+          </li>
+          <li>
+            <a routerLink="/category/3" routerLintActive="active-link">Mouse Pads</a>
+          </li>
+          <li>
+            <a routerLink="/category/4" routerLintActive="active-link">Luggage Tags</a>
+          </li>
+        </ul>
+      </nav>
+    </div> -->
+
+    <!--version 2-->
+    <app-product-category-menu></app-product-category-menu>
+  </aside>
+  <!-- END MENU SIDEBAR-->
+
+
+  		<!-- PAGE CONTAINER-->
+      <div class="page-container">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop">
+          <div class="section-content section-content-p30">
+            <div class="container-fluid">
+              <div class="header-wrap">
+
+                <!--使用componenet的tag前 必須要在app.module.ts中註冊好SearchComponent 才能使用! -->
+                <app-search></app-search>
+                <!-- 搬到search compnent html
+                <form class="form-header" onsubmit="return false;" method="GET">
+                  <input class="au-input au-input-xl" type="text" name="search"
+                    placeholder="Search for data ..." />
+                  <button class="au-btn-submit" type="submit">
+                    Search
+                  </button>
+                </form>
+                -->
+
+                <div class="cart-area d-n">
+                  <a href="shopping-detail.html">
+                    <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart"
+                      aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="account-wrap"></div>
+            </div>
+          </div>
+        </header>
+        <!-- END HEADER DESKTOP-->
+      
+      <!-- MAIN CONTENT-->
+      <!-- <app-product-list></app-product-list>  -->
+      <!--router outlet acts as a placeholder. Renders the desired component based on route-->
+      <router-outlet></router-outlet>
+      
+      </div>
+</div>
+
+<!--end page container-->
+<!--footer begin-->
+<footer>
+  <ul>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+</footer>
+<!--footer end-->
