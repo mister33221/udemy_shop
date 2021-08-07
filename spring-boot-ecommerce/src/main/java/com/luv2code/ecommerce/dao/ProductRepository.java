@@ -2,6 +2,9 @@ package com.luv2code.ecommerce.dao;
 
 
 
+import java.util.List;
+
+import org.junit.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.luv2code.ecommerce.entity.Product;
+import com.luv2code.ecommerce.entity.ProductCategory;
 
 
 //這樣才能從8080轉到4200
@@ -25,4 +29,7 @@ public interface ProductRepository extends JpaRepository<Product, Long > {
 	
 	
 	Page<Product> findByNameContaining(@RequestParam("name") String name, Pageable pageable);
+	
+	
+	List<Product> findAll();
 }

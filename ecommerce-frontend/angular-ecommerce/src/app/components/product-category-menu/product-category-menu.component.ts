@@ -32,7 +32,7 @@ export class ProductCategoryMenuComponent implements OnInit {
     this.productService.getProductCategories().subscribe(
       //他只寫data 又沒有宣告屬性 我又是自己加的
       ( data: ProductCategory[] | undefined) => {
-        console.log('Product CateGories = ' + JSON.stringify(data));
+        console.log('Product CateGories?????? = ' + JSON.stringify(data));
         this.productCategories = data;
       }
     );

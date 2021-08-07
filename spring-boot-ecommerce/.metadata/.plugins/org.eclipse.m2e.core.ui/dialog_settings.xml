@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\udemy\udemy\angular_springboot_shop\spring-boot-ecommerce"/>
 			<item value="D:\udemy202009eclipse-work\spring-boot-angular\spring-boot-ecommerce-workSpace\spring-boot-ecommerce"/>
 		</list>
 		<list key="projectNameTemplate">
