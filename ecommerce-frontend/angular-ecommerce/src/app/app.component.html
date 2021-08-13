@@ -3,7 +3,9 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a href="#">
+      <!-- 在AppModule中的route有定義過products，是定義給component: ProductListComponent
+      所以這邊我們可以使用router來指定路由連到指定的component -->
+      <a routerLink="/products">
         <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
       </a>
     </div>
@@ -29,6 +31,8 @@
     </div> -->
 
     <!--version 2-->
+    <!-- 在app-product-category-menu component中的@Component 有app-product-category-menu 且APP.moudles.ts中的Ng-modules也有宣告
+    所以這邊可以直接使用app-product-category-menu當作html 元素來拉到該component的html -->
     <app-product-category-menu></app-product-category-menu>
   </aside>
   <!-- END MENU SIDEBAR-->
@@ -54,12 +58,9 @@
                 </form>
                 -->
 
-                <div class="cart-area d-n">
-                  <a href="shopping-detail.html">
-                    <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart"
-                      aria-hidden="true"></i>
-                  </a>
-                </div>
+                <app-cart-status></app-cart-status>
+
+
               </div>
               <div class="account-wrap"></div>
             </div>
@@ -70,6 +71,7 @@
       <!-- MAIN CONTENT-->
       <!-- <app-product-list></app-product-list>  -->
       <!--router outlet acts as a placeholder. Renders the desired component based on route-->
+      <!-- router-link會根據route 的路由機制運作結果會如同 Component 的 tag，會以這個 tag 當作標記去插入指定的 Component。 -->
       <router-outlet></router-outlet>
       
       </div>

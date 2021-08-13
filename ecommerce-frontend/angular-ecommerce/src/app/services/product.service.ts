@@ -54,6 +54,7 @@ export class ProductService {
     //並返回一個 Observable，它會在收到響應時發出所請求到的資料。
     //返回的型別取決於你呼叫時傳入的 observe 和 responseType 引數。
     //response => response._embedded.productCategory不是很董
+    //我們可以訂閱subscribe這個 observable，來接收他送出的值，程式碼如下
     getProductCategories(): Observable<ProductCategory[]> {
       
     return this.httpClient.get<GetResponseProductCategory>(this.categeryUrl).pipe(
@@ -115,6 +116,7 @@ interface GetResponseProducts{
 }
 // we'll use this GetResponseProductCategory for calling REST API
 //unwraps the JSON form Spring Data REST _enbedded entry
+//可以在service裡面放一堆interface 來接收傳回來的JSON資料?
 interface GetResponseProductCategory{ 
   _embedded:{
     productCategory: ProductCategory[];

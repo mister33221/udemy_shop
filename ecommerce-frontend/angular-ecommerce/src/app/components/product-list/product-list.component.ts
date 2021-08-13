@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -31,10 +33,12 @@ export class ProductListComponent implements OnInit {
   //他本來寫 = null 但String不能指定為null
   previousKeyword: string = "";
 
+
   //inject the activatedRoute
   //the current acive route that loaded the component. useful for accessing route parameters
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cartService: CartService) { }
 
   
 
@@ -69,11 +73,9 @@ export class ProductListComponent implements OnInit {
     console.log(`keyword=${theKeyword}, thePageNumber=${this.thePageNumber}`)
     
     //now search for the product using keyword
-    this.productService.searchProducts(theKeyword).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.searchProductPaginate(this.thePageNumber -1,
+                                              this.thePageSize,
+                                              theKeyword).subscribe(this.processResult());
   }
 
   handleListProducts(){
@@ -123,7 +125,17 @@ export class ProductListComponent implements OnInit {
     this.listProducts();
   }
 
-  
-  }
+addToCart(theProduct: Product){
+  console.log(`Adding to cart : ${theProduct.name}, ${theProduct.unitPrice}  `)
+
+  //TODO ... do the real work
+  const theCartItem = new CartItem(theProduct)
+
+  this.cartService.addToCart(theCartItem)
+
+}  
+
+
+}
 
 

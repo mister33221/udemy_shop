@@ -12,9 +12,18 @@ import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 //when path matches, create new instance of componenet順序性有意義 會從第一個開始找
+//在 Routes 陣列中定義你的路由，這個陣列中的每個陸游都是一個包含兩個屬性的JavaScript物件，
+//第一個屬性path定義了該路油的URL路徑
+//第二個屬性component定義了要讓Angular當作相應路徑的元件
+//而有了routes的定義後，就可以把它應用在html中。把要新增陸游的連結賦值給routerLink屬性，使用這點選時就會連結到該元件  
+//ex:  <a routerLink="/first-component" routerLinkActive="active">First Component</a>
+//而<router-outlet> 標籤。該元素會通知 Angular，你可以用所選路由的元件更新應用的檢視。
 const routes: Routes = [
+  {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
   {path: 'category/:id', component: ProductListComponent},
@@ -32,7 +41,9 @@ const routes: Routes = [
     ProductCategoryMenuComponent,
     //要在這邊註冊好 才能在html中使用他的tag!
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     //上面搬下來的
