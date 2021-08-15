@@ -14,6 +14,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //when path matches, create new instance of componenet順序性有意義 會從第一個開始找
 //在 Routes 陣列中定義你的路由，這個陣列中的每個陸游都是一個包含兩個屬性的JavaScript物件，
@@ -23,6 +25,7 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 //ex:  <a routerLink="/first-component" routerLinkActive="active">First Component</a>
 //而<router-outlet> 標籤。該元素會通知 Angular，你可以用所選路由的元件更新應用的檢視。
 const routes: Routes = [
+  {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'search/:keyword', component: ProductListComponent},
@@ -43,7 +46,8 @@ const routes: Routes = [
     SearchComponent,
     ProductDetailsComponent,
     CartStatusComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    CheckoutComponent
   ],
   imports: [
     //上面搬下來的
@@ -52,7 +56,8 @@ const routes: Routes = [
     HttpClientModule,
     //exposes the exported declarations in NgbNodule(classes, interface, constants etc)
     //and makes them avaliable in the current module.
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

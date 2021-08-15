@@ -33,5 +33,17 @@ export class CartDetailsComponent implements OnInit {
         this.cartService.computeCartTotals();
 
   }
+  //與加入購物車共用一個方法
+  increamentQuantity(theCartItem: CartItem){
+    this.cartService.addToCart(theCartItem)
+  }
+  // 減少品項數量
+  decreamentQuantity(theCartItem: CartItem){
+    this.cartService.decreamentQuantity(theCartItem)
+  }
 
+  // 移除按鈕
+  remove(thCartItem: CartItem){
+    this.cartService.remove(thCartItem)
+  }
 }
