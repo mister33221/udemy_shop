@@ -15,8 +15,10 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
+import com.luv2code.ecommerce.entity.Country;
 import com.luv2code.ecommerce.entity.Product;
 import com.luv2code.ecommerce.entity.ProductCategory;
+import com.luv2code.ecommerce.entity.State;
 
 
 
@@ -34,7 +36,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 	//53 右鍵source 然後implement methods
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated mSethod stub
 		
 		
 		RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
@@ -42,22 +44,26 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		HttpMethod[] theUnsupportedAction = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 		
 		//disable HTTP methods for product : put, post, and delete???????????
-		config.getExposureConfiguration()
-			.forDomainType(Product.class)
-			.withItemExposure((metdata, HttpMethods) -> HttpMethods.disable(theUnsupportedAction))
-			.withCollectionExposure((metdata, HttpMethods) -> HttpMethods.disable(theUnsupportedAction)); 
-	
+		disableHttpMethods(Product.class,config, theUnsupportedAction); 
+
 		//disable HTTP methods for productCategory : put, post, and delete???????????
-		config.getExposureConfiguration()
-			.forDomainType(ProductCategory.class)
-			.withItemExposure((metdata, HttpMethods) -> HttpMethods.disable(theUnsupportedAction))
-			.withCollectionExposure((metdata, HttpMethods) -> HttpMethods.disable(theUnsupportedAction)); 
+		disableHttpMethods(ProductCategory.class,config, theUnsupportedAction); 
+		
+		disableHttpMethods(Country.class,config, theUnsupportedAction); 
+		disableHttpMethods(State.class,config, theUnsupportedAction); 
 	
 		//call an internal helper method to expose the id
 		exposeIds(config);
 	
 	
 	
+	}
+
+	private void disableHttpMethods(Class theClass, RepositoryRestConfiguration config, HttpMethod[] theUnsupportedAction) {
+		config.getExposureConfiguration()
+			.forDomainType(theClass)
+			.withItemExposure((metdata, HttpMethods) -> HttpMethods.disable(theUnsupportedAction))
+			.withCollectionExposure((metdata, HttpMethods) -> HttpMethods.disable(theUnsupportedAction));
 	}
 	//幾乎都看不懂!!
 	//we have the entity ID at the  productCategory level
