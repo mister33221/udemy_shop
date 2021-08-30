@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2shopValidators } from 'src/app/validators/luv2shop-validators';
 
@@ -14,8 +16,7 @@ export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
   //這邊宣告的property就可以直接在HTML裡用{{ }}取得
-  totalPrice: number = 0;
-  totalQuantity: number = 0;
+  
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
@@ -24,12 +25,18 @@ export class CheckoutComponent implements OnInit {
 
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
+  totalQuantity: any;
+  totalPrice: any;
 
   //網頁載入時建構仔會先跑 然後跑ngOnInit (inject the service)
   constructor(private formBuilder: FormBuilder,
-    private luv2ShopFormService: Luv2ShopFormService) { }
+    private luv2ShopFormService: Luv2ShopFormService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.reviewCartDetails()
+
+
     //customer shippingAddress這邊叫做formGroupName
     //底下的資料如customer的firestName叫做formControlName
     this.checkoutFormGroup = this.formBuilder.group({
@@ -109,6 +116,17 @@ export class CheckoutComponent implements OnInit {
         console.log("retrieved countries: " + JSON.stringify(data));
         this.countries = data;
       }
+    )
+  }
+  reviewCartDetails() {
+    //subscribe to cartservice. totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      totalQuantity => this.totalQuantity = totalQuantity
+
+    )
+    //subscribe to cartService.totalPirce
+    this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice
     )
   }
   //purchase button
