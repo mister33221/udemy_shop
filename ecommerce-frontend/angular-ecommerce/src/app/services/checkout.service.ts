@@ -14,6 +14,9 @@ export class CheckoutService {
 
   placeOrder(purchase: Purchase): Observable<any>{
     console.log("purchaaseUrl")
+    console.log(purchase.shippingAddress.state)
+    console.log(purchase.shippingAddress.country)
+    console.log(purchase.shippingAddress.zipCode)
     return this.httpClient.post<Purchase>(this.purchaseUrl,  purchase);
   }
 }
