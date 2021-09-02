@@ -34,7 +34,7 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-	@Column(name = "toder_tracking_number")
+	@Column(name = "order_tracking_number")
 	private String orderTrackingNumber;
 	@Column(name = "total_quantity")
 	private int totalQuantity;

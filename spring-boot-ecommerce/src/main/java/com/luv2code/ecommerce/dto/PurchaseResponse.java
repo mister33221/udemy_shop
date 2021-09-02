@@ -8,29 +8,24 @@ import lombok.NonNull;
 //@Getter on all fields, @Setter on all non-final fields, and 
 //@RequiredArgsConstructor!( ex private final String orderTrackingNumber 要有final
 @Data
-
 public class PurchaseResponse {
 
 	
 	
 
-	private String orderTrackingNumber;
+	private final String orderTrackingNumber;
 
-	
-	
-	public PurchaseResponse(String orderTrackingNumber ) {
+	public PurchaseResponse(String orderTrackingNumber) {
 		this.orderTrackingNumber = orderTrackingNumber;
-		// TODO Auto-generated constructor stub
 	}
 
+	
+	//response沒有getter 得到406的http錯誤
 	public String getOrderTrackingNumber() {
 		return orderTrackingNumber;
 	}
 
-	public void setOrderTrackingNumber(String orderTrackingNumber) {
-		this.orderTrackingNumber = orderTrackingNumber;
-	}
-
+	
 
 
 }

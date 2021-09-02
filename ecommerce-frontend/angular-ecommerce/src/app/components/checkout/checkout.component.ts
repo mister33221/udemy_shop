@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Country } from 'src/app/common/country';
+import { Order } from 'src/app/common/order';
+import { OrderItem } from 'src/app/common/order-item';
+import { Purchase } from 'src/app/common/purchase';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2shopValidators } from 'src/app/validators/luv2shop-validators';
 
@@ -16,7 +21,7 @@ export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup: FormGroup;
   //這邊宣告的property就可以直接在HTML裡用{{ }}取得
-  
+
 
   creditCardYears: number[] = [];
   creditCardMonths: number[] = [];
@@ -30,8 +35,10 @@ export class CheckoutComponent implements OnInit {
 
   //網頁載入時建構仔會先跑 然後跑ngOnInit (inject the service)
   constructor(private formBuilder: FormBuilder,
-    private luv2ShopFormService: Luv2ShopFormService,
-    private cartService: CartService) { }
+              private luv2ShopFormService: Luv2ShopFormService,
+              private cartService: CartService,
+              private chheckoutService: CheckoutService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.reviewCartDetails()
@@ -87,9 +94,9 @@ export class CheckoutComponent implements OnInit {
         Validators.minLength(2),
         Luv2shopValidators.notOnlyWhitespace]),
         cardNumber: new FormControl('', [Validators.required,
-        Validators.pattern('[0-9{16}]')]),
+          Validators.pattern('[0-9]{16}')]),
         securityCode: new FormControl('', [Validators.required,
-        Validators.pattern('[0-9{3}]')]),
+        Validators.pattern('[0-9]{3}')]),
         expirationMonth: [''],
         expirationYear: [''],
       })
@@ -135,17 +142,78 @@ export class CheckoutComponent implements OnInit {
     // //touching all fields triggers , the display of the eoore messages
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
+      return; //就會停止在這裡
     }
+
+    //set up oder
+    let order = new Order();
+    order.totalPrice = this.totalPrice;
+    order.totalQuantity = this.totalQuantity;
+
+    //get cart items
+    const cartiems = this.cartService.cartItems;
+    //create orderItems from carrtItems
+    // - long way
+    // let orderItems: OrderItem[] = [];
+    // for (let index = 0; index < cartiems.length; index++) {
+    //   orderItems[index] = new OrderItem(cartiems[index]); 
+    // }
+    //short way of doing the same  thing
+    let orderItems: OrderItem[] = cartiems.map(tempCartItem => new OrderItem(tempCartItem))
+    //setup purchase
+    let purchase = new Purchase();
+    //populate pruchase - customer
+    purchase.customer = this.checkoutFormGroup.controls['customer'].value;
+
+    //populate puurchase - shipping address
+    purchase.shippingAddress = this.checkoutFormGroup.controls['shippingAddress'].value;
+    const shippingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
+    const shippingCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
+    purchase.shippingAddress.state = shippingState.name;
+    purchase.shippingAddress.country = shippingCountry.name;
+
+    //populate purchase - billing address
+    purchase.billingAddress = this.checkoutFormGroup.controls['shippingAddress'].value;
+    const billingState: State = JSON.parse(JSON.stringify(purchase.shippingAddress.state));
+    const billinhCountry: Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country));
+    purchase.shippingAddress.state = billingState.name;
+    purchase.shippingAddress.country = billinhCountry.name;
+    // populate purchase - order and order items
+    purchase.order = order;
+    purchase.orderItems = orderItems;
+    //call REST API via the checkoutService
+    this.chheckoutService.placeOrder(purchase).subscribe({
+      //means success
+      next: response=>{
+        alert(`Your order has bean received.\nOrder tracking number: ${response.orderTrackingNumber}`)
+        //reset card
+        this.resetCart();
+      },
+      //means error/exception
+      error: error=>
+        alert(`There was an error: ${error.message}`)
+
+    })
+
 
     console.log(this.checkoutFormGroup.get('customer').value)
     console.log(this.checkoutFormGroup.get('billingAddress').value)
     console.log(this.checkoutFormGroup.get('creditCard').value)
     console.log(`email address is ` + this.checkoutFormGroup.get('customer').value.email)
   }
+  resetCart() {
+    //rest cart data
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);//next甚麼意思????  216
+    this.cartService.totalQuantity.next(0);
+    //reset the form
+    this.checkoutFormGroup.reset();
+    //navigate back to the product page
+    this.router.navigateByUrl("/products");
+  }
   //validator會用到的???
   get firstName() {
     return this.checkoutFormGroup.get('customer.firstName');
-    console.log("get first");
   }
   get lastName() {
     return this.checkoutFormGroup.get('customer.lastName')

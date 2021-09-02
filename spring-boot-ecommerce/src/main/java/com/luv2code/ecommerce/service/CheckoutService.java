@@ -5,5 +5,5 @@ import com.luv2code.ecommerce.dto.PurchaseResponse;
 
 public interface CheckoutService {
 
-	PurchaseResponse placeeOrder(Purchase purchase);
+	PurchaseResponse placeOrder(Purchase purchase);
 }

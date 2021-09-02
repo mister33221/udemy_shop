@@ -30,7 +30,8 @@ public class OrderItem {
 	private BigDecimal unitPrice;
 	@Column(name = "quantity")
 	private int quantity;
-	@Column(name = "pproduct_id")
+	//name打錯 比對錯誤 得到500 http錯誤  //postman沒有改成json格式 得到415錯誤
+	@Column(name = "product_id")
 	private Long productId;
 	
 	
