@@ -1,17 +1,17 @@
 <div class="page-wrapper">
 
-  <!-- MENU SIDEBAR-->
-  <aside class="menu-sidebar d-none d-lg-block">
-    <div class="logo">
-      <!-- 在AppModule中的route有定義過products，是定義給component: ProductListComponent
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block">
+        <div class="logo">
+            <!-- 在AppModule中的route有定義過products，是定義給component: ProductListComponent
       所以這邊我們可以使用router來指定路由連到指定的component -->
-      <a routerLink="/products">
-        <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
-      </a>
-    </div>
+            <a routerLink="/products">
+                <img src="assets/images/logo.png" alt="luv2shop" class="img-responsive">
+            </a>
+        </div>
 
-    <!--version 1-->
-    <!-- <div class="menu-sidebar-content js-scrollbar1">
+        <!--version 1-->
+        <!-- <div class="menu-sidebar-content js-scrollbar1">
       <nav class="navbar-sidebar">
         <ul class="list-unstyled navbar-list">
           <li>
@@ -30,25 +30,25 @@
       </nav>
     </div> -->
 
-    <!--version 2-->
-    <!-- 在app-product-category-menu component中的@Component 有app-product-category-menu 且APP.moudles.ts中的Ng-modules也有宣告
+        <!--version 2-->
+        <!-- 在app-product-category-menu component中的@Component 有app-product-category-menu 且APP.moudles.ts中的Ng-modules也有宣告
     所以這邊可以直接使用app-product-category-menu當作html 元素來拉到該component的html -->
-    <app-product-category-menu></app-product-category-menu>
-  </aside>
-  <!-- END MENU SIDEBAR-->
+        <app-product-category-menu></app-product-category-menu>
+    </aside>
+    <!-- END MENU SIDEBAR-->
 
 
-  		<!-- PAGE CONTAINER-->
-      <div class="page-container">
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop">
-          <div class="section-content section-content-p30">
-            <div class="container-fluid">
-              <div class="header-wrap">
+            <div class="section-content section-content-p30">
+                <div class="container-fluid">
+                    <div class="header-wrap">
 
-                <!--使用componenet的tag前 必須要在app.module.ts中註冊好SearchComponent 才能使用! -->
-                <app-search></app-search>
-                <!-- 搬到search compnent html
+                        <!--使用componenet的tag前 必須要在app.module.ts中註冊好SearchComponent 才能使用! -->
+                        <app-search></app-search>
+                        <!-- 搬到search compnent html
                 <form class="form-header" onsubmit="return false;" method="GET">
                   <input class="au-input au-input-xl" type="text" name="search"
                     placeholder="Search for data ..." />
@@ -57,33 +57,43 @@
                   </button>
                 </form>
                 -->
+                        <form class="form-header" *ngIf="!isLoggedIn">
+                            <button class="au-btn-submit">
+                              <a routerLink="/login" routerLintActive="active-link">Log In</a>
+                            </button>
+                        </form>
+                        <form class="form-header" *ngIf="isLoggedIn">
+                            <button class="au-btn-submit">
+                          Log Out
+                          </button>
+                        </form>
 
-                <app-cart-status></app-cart-status>
+                        <app-cart-status></app-cart-status>
 
 
-              </div>
-              <div class="account-wrap"></div>
+                    </div>
+                    <div class="account-wrap"></div>
+                </div>
             </div>
-          </div>
         </header>
         <!-- END HEADER DESKTOP-->
-      
-      <!-- MAIN CONTENT-->
-      <!-- <app-product-list></app-product-list>  -->
-      <!--router outlet acts as a placeholder. Renders the desired component based on route-->
-      <!-- router-link會根據route 的路由機制運作結果會如同 Component 的 tag，會以這個 tag 當作標記去插入指定的 Component。 -->
-      <router-outlet></router-outlet>
-      
-      </div>
+
+        <!-- MAIN CONTENT-->
+        <!-- <app-product-list></app-product-list>  -->
+        <!--router outlet acts as a placeholder. Renders the desired component based on route-->
+        <!-- router-link會根據route 的路由機制運作結果會如同 Component 的 tag，會以這個 tag 當作標記去插入指定的 Component。 -->
+        <router-outlet></router-outlet>
+
+    </div>
 </div>
 
 <!--end page container-->
 <!--footer begin-->
 <footer>
-  <ul>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
-    <li><a href="#">Help</a></li>
-  </ul>
+    <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Help</a></li>
+    </ul>
 </footer>
 <!--footer end-->
