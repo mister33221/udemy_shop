@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
 
   USER_NAME_SESSION_ATTRIBUTE_NAME = "authenticatedUser"
-  private baseUrl = 'http://localhost:8080/api/authentication';
+  private baseUrl = 'http://localhost:8080/auth/v1/authentication';
 
   public username: any;
   public password: any;
@@ -16,6 +16,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   authenticationService(username: String, password: String){
+    console.log("in1")
     return this.http.get(`${this.baseUrl}`,
     { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map((res) => {
       this.username = username;
