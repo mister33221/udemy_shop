@@ -10,31 +10,31 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().
-		disable()
-			.authorizeRequests()
-			.antMatchers(HttpMethod.OPTIONS, "/**")
-			.permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
-          .httpBasic();
-	}
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.csrf().
+//		disable()
+//			.authorizeRequests()
+//			.antMatchers(HttpMethod.OPTIONS, "/**")
+//			.permitAll()
+//			.anyRequest()
+//			.authenticated()
+//			.and()
+//          .httpBasic();
+//	}
 	
 	
     //停用spring security
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//    	 http.csrf().
-//    	 disable().
-//    	 authorizeRequests().
-//    	 anyRequest().
-//    	 permitAll().
-//    	 and().
-//    	 logout().
-//    	 permitAll();
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+    	 http.csrf().
+    	 disable().
+    	 authorizeRequests().
+    	 anyRequest().
+    	 permitAll().
+    	 and().
+    	 logout().
+    	 permitAll();
+    }
     
 	
 }

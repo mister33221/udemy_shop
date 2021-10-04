@@ -34,6 +34,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 	}
 	
 	//53 右鍵source 然後implement methods
+	//這邊是為了讓spring data jpa 除了get之外(put post delete) 的http動作都失效而且的config 以免藉由輸入網址就可以直接對後端進行操作
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 		// TODO Auto-generated mSethod stub
@@ -43,19 +44,18 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 		
 		HttpMethod[] theUnsupportedAction = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 		
-		//disable HTTP methods for product : put, post, and delete???????????
+		//disable HTTP methods for product : put, post, and delete
 		disableHttpMethods(Product.class,config, theUnsupportedAction); 
 
-		//disable HTTP methods for productCategory : put, post, and delete???????????
+		//disable HTTP methods for productCategory : put, post, and delete
 		disableHttpMethods(ProductCategory.class,config, theUnsupportedAction); 
 		
 		disableHttpMethods(Country.class,config, theUnsupportedAction); 
+		
 		disableHttpMethods(State.class,config, theUnsupportedAction); 
 	
 		//call an internal helper method to expose the id
 		exposeIds(config);
-	
-	
 	
 	}
 
