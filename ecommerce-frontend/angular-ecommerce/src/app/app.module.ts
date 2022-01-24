@@ -18,7 +18,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
-import { TestCComponent } from './components/cart-status/test-c/test-c.component';
 
 //when path matches, create new instance of componenet順序性有意義 會從第一個開始找
 //在 Routes 陣列中定義你的路由，這個陣列中的每個陸游都是一個包含兩個屬性的JavaScript物件，
@@ -52,8 +51,7 @@ const routes: Routes = [
     CartStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
-    LoginComponent,
-    TestCComponent
+    LoginComponent
   ],
   imports: [
     //上面搬下來的
