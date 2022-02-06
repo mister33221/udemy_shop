@@ -1,0 +1,74 @@
+2022-01-25 14:59:54.704  INFO 24552 --- [restartedMain] c.l.e.SpringBootEcommerceApplication     : Starting SpringBootEcommerceApplication using Java 11.0.11 on LAPTOP-IPUJ7740 with PID 24552 (D:\sideproject\udemy_shop\udemy_shop\spring-boot-ecommerce\target\classes started by miste in D:\sideproject\udemy_shop\udemy_shop\spring-boot-ecommerce)
+2022-01-25 14:59:54.704  INFO 24552 --- [restartedMain] c.l.e.SpringBootEcommerceApplication     : No active profile set, falling back to default profiles: default
+2022-01-25 14:59:54.889  INFO 24552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-01-25 14:59:54.912  INFO 24552 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 5 JPA repository interfaces.
+2022-01-25 14:59:55.011  INFO 24552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-01-25 14:59:55.011  INFO 24552 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-01-25 14:59:55.012  INFO 24552 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2022-01-25 14:59:55.046  INFO 24552 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-01-25 14:59:55.046  INFO 24552 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 340 ms
+2022-01-25 14:59:55.073  INFO 24552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2022-01-25 14:59:55.078  INFO 24552 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2022-01-25 14:59:55.082  INFO 24552 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-01-25 14:59:55.087  INFO 24552 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-01-25 14:59:55.162  INFO 24552 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-01-25 14:59:55.162  INFO 24552 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-01-25 14:59:55.226  WARN 24552 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-01-25 14:59:55.331  INFO 24552 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1120007a, org.springframework.security.web.context.SecurityContextPersistenceFilter@4da6d03, org.springframework.security.web.header.HeaderWriterFilter@3650f4ed, org.springframework.security.web.authentication.logout.LogoutFilter@567ad68e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@256f32da, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@14a95d06, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2323bb97, org.springframework.security.web.session.SessionManagementFilter@630ed5a5, org.springframework.security.web.access.ExceptionTranslationFilter@458c9319, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@79e62ad9]
+2022-01-25 14:59:55.652  INFO 24552 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-01-25 14:59:55.661  INFO 24552 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-01-25 14:59:55.666  INFO 24552 --- [restartedMain] c.l.e.SpringBootEcommerceApplication     : Started SpringBootEcommerceApplication in 1.024 seconds (JVM running for 592.858)
+2022-01-25 14:59:55.668  INFO 24552 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-01-25 14:59:59.602  INFO 24552 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-01-25 14:59:59.603  INFO 24552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-01-25 14:59:59.604  INFO 24552 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-01-25 14:59:59.611 DEBUG 24552 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        productcat0_.id as id1_6_,
+        productcat0_.category_name as category2_6_ 
+    from
+        product_category productcat0_ limit ?
+2022-01-25 14:59:59.653 DEBUG 24552 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        product0_.id as id1_5_,
+        product0_.active as active2_5_,
+        product0_.category_id as categor11_5_,
+        product0_.date_created as date_cre3_5_,
+        product0_.description as descript4_5_,
+        product0_.image_url as image_ur5_5_,
+        product0_.last_updated as last_upd6_5_,
+        product0_.name as name7_5_,
+        product0_.sku as sku8_5_,
+        product0_.unit_price as unit_pri9_5_,
+        product0_.units_in_stock as units_i10_5_ 
+    from
+        product product0_ 
+    left outer join
+        product_category productcat1_ 
+            on product0_.category_id=productcat1_.id 
+    where
+        productcat1_.id=? limit ?
+2022-01-25 14:59:59.654 TRACE 24552 --- [http-nio-8080-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
+2022-01-25 14:59:59.661 DEBUG 24552 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        productcat0_.id as id1_6_0_,
+        productcat0_.category_name as category2_6_0_ 
+    from
+        product_category productcat0_ 
+    where
+        productcat0_.id=?
+2022-01-25 14:59:59.661 TRACE 24552 --- [http-nio-8080-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
+2022-01-25 14:59:59.665 DEBUG 24552 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(product0_.id) as col_0_0_ 
+    from
+        product product0_ 
+    left outer join
+        product_category productcat1_ 
+            on product0_.category_id=productcat1_.id 
+    where
+        productcat1_.id=?
+2022-01-25 14:59:59.666 TRACE 24552 --- [http-nio-8080-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [1]
+2022-01-25 15:00:35.890  INFO 24552 --- [Thread-11] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-01-25 15:00:35.891  INFO 24552 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2022-01-25 15:00:35.896  INFO 24552 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.

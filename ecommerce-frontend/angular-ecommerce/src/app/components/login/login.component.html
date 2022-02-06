@@ -3,18 +3,31 @@
     <h1 class="text-center">Login</h1>
     <div class="card">
         <div class="card-body">
-            <form class="form-group">
-                <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-                <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
+            <form class="form-group" *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
                 <div class="form-group">
-                    <label for="email">User Name :</label>
-                    <input type="text" class="form-control" id="username" [(ngModel)]="username" placeholder="Enter User Name" name="username">
+                    <label for="username">User Name :</label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required #username="ngModel">
+                    <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+                        Username is required!
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="password" [(ngModel)]="password" placeholder="Enter password" name="password">
+                    <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+                    <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                        <div *ngIf="password.errors.minlength">
+                            Password must be at least 6 characters
+                        </div>
+                    </div>
                 </div>
-                <button type="button" (click)=handleLogin() class="btn btn-success">Login</button>
+                <!-- 用onclick在btn上就會直接執行該方法 如果使用form group 就可以把方法寫在from標籤裡面  -->
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block">
+                    Login
+                  </button>
+                </div>
             </form>
         </div>
     </div>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.luv2code.ecommerce.dao.ProductCategoryReepository;
@@ -13,6 +14,7 @@ import com.luv2code.ecommerce.entity.Product;
 import com.luv2code.ecommerce.entity.ProductCategory;
 
 @Controller
+@CrossOrigin("http://localhost:4200")
 public class controller {
 
 	@Autowired

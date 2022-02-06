@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +14,16 @@ export class AppComponent {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService) { }
+    // private authenticationService: AuthenticationService
+    ) { }
 
   ngOnInit() {
-    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
-    console.log('menu ->' + this.isLoggedIn);
+    // this.isLoggedIn = this.authenticationService.isUserLoggedIn();
+    // console.log('menu ->' + this.isLoggedIn);
   }
 
   handleLogout() {
-    this.authenticationService.logout();
+    // this.authenticationService.logout();
   }
 
 }

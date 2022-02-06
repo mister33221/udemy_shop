@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductCategory } from 'src/app/common/product-category';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-product-category-menu',
@@ -26,8 +26,8 @@ export class ProductCategoryMenuComponent implements OnInit {
   ngOnInit(): void {
     this.listProductCategories()
   }
-  //作為發佈者，你建立一個 Observable 的實例，其中定義了一個訂閱者（subscriber）函式。 
-  //當有消費者呼叫 subscribe() 方法時，這個函式就會執行。 
+  //作為發佈者，你建立一個 Observable 的實例，其中定義了一個訂閱者（subscriber）函式。
+  //當有消費者呼叫 subscribe() 方法時，這個函式就會執行。
   //訂閱者函式用於定義“如何獲取或產生那些要發佈的值或訊息”。
   //要執行所建立的可觀察物件，並開始從中接收通知，你就要呼叫它的 subscribe() 方法，
   //並傳入一個觀察者（observer）。 這是一個 JavaScript 物件，它定義了你收到的這些訊息的處理器（handler）。

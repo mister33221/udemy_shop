@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-cart-status',
@@ -20,7 +20,7 @@ export class CartStatusComponent implements OnInit {
   }
 
   updateCartStatus() {
-    
+
     //subscribe to thee cart total price
     this.cartService.totalPrice.subscribe(
       data => this.totalPrice = data

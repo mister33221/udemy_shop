@@ -7,9 +7,9 @@ import { Order } from 'src/app/common/order';
 import { OrderItem } from 'src/app/common/order-item';
 import { Purchase } from 'src/app/common/purchase';
 import { State } from 'src/app/common/state';
-import { CartService } from 'src/app/services/cart.service';
-import { CheckoutService } from 'src/app/services/checkout.service';
-import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { CheckoutService } from 'src/app/services/checkout/checkout.service';
+import { Luv2ShopFormService } from 'src/app/services/shop-form/luv2-shop-form.service';
 import { Luv2shopValidators } from 'src/app/validators/luv2shop-validators';
 
 @Component({
@@ -156,7 +156,7 @@ export class CheckoutComponent implements OnInit {
     // - long way
     // let orderItems: OrderItem[] = [];
     // for (let index = 0; index < cartiems.length; index++) {
-    //   orderItems[index] = new OrderItem(cartiems[index]); 
+    //   orderItems[index] = new OrderItem(cartiems[index]);
     // }
     //short way of doing the same  thing
     let orderItems: OrderItem[] = cartiems.map(tempCartItem => new OrderItem(tempCartItem))

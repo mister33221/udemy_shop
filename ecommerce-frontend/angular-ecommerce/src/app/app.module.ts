@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ProductService } from './services/product.service';
+import { ProductService } from './services/product/product.service';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
@@ -17,13 +17,13 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { HttpInterceptorService } from './services/http-interceptor.service';
+// import { HttpInterceptorService } from './services/http-interceptor.service';
 
 //when path matches, create new instance of componenet順序性有意義 會從第一個開始找
 //在 Routes 陣列中定義你的路由，這個陣列中的每個陸游都是一個包含兩個屬性的JavaScript物件，
 //第一個屬性path定義了該路油的URL路徑
 //第二個屬性component定義了要讓Angular當作相應路徑的元件
-//而有了routes的定義後，就可以把它應用在html中。把要新增陸游的連結賦值給routerLink屬性，使用這點選時就會連結到該元件  
+//而有了routes的定義後，就可以把它應用在html中。把要新增陸游的連結賦值給routerLink屬性，使用這點選時就會連結到該元件
 //ex:  <a routerLink="/first-component" routerLinkActive="active">First Component</a>
 //而<router-outlet> 標籤。該元素會通知 Angular，你可以用所選路由的元件更新應用的檢視。
 const routes: Routes = [
@@ -66,11 +66,11 @@ const routes: Routes = [
   ],
   providers: [
     ProductService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpInterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

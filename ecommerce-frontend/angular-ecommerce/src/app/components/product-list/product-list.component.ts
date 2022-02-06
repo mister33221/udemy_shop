@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
-import { CartService } from 'src/app/services/cart.service';
-import { ProductService } from 'src/app/services/product.service';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -40,7 +40,7 @@ export class ProductListComponent implements OnInit {
               private route: ActivatedRoute,
               private cartService: CartService) { }
 
-  
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(()=>{
@@ -60,7 +60,7 @@ export class ProductListComponent implements OnInit {
   }
 
   handleSearchtProducts(){
-    //加了一個驚嘆號的意思?? 在給型別 但還沒賦值之前 先給他的未確認的意思嗎 
+    //加了一個驚嘆號的意思?? 在給型別 但還沒賦值之前 先給他的未確認的意思嗎
     //from my understanding, u just force the compiler to believe that the constant is impossible to be null.
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!;
     //if we have  a different keyword than previous
@@ -71,7 +71,7 @@ export class ProductListComponent implements OnInit {
     this.previousKeyword = theKeyword;
 
     console.log(`keyword=${theKeyword}, thePageNumber=${this.thePageNumber}`)
-    
+
     //now search for the product using keyword
     this.productService.searchProductPaginate(this.thePageNumber -1,
                                               this.thePageSize,
@@ -88,7 +88,7 @@ export class ProductListComponent implements OnInit {
         //not catagory id avaliable ... default to category id = 1
         this.currentCategoryId = 1;
       }
-          
+
       //check if we have a different category than previous
       //note: angular will reuse a component if it is currently being viewed
       //if we have a different category id than previous
@@ -109,7 +109,7 @@ export class ProductListComponent implements OnInit {
 
   processResult(){
   //他是只有data而已
-  return ((data: { _embedded: { products: Product[]; }; page: { number: number; size: number; totalElements: number; }; }) => 
+  return ((data: { _embedded: { products: Product[]; }; page: { number: number; size: number; totalElements: number; }; }) =>
     {
       this.products = data._embedded.products;
       //spring data REST: pages are 0 based
@@ -133,7 +133,7 @@ addToCart(theProduct: Product){
 
   this.cartService.addToCart(theCartItem)
 
-}  
+}
 
 
 }
