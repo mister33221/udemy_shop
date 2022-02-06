@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenStorageService } from './services/tokenStorage/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +10,32 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AppComponent {
   title = 'angular-ecommerce';
 
-
+  private roles: string[] = [];
   isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
 
-  constructor(private route: ActivatedRoute,
-    private router: Router,
-    // private authenticationService: AuthenticationService
-    ) { }
+  constructor(private tokenStorageService: TokenStorageService,
+    private router: Router) { }
 
-  ngOnInit() {
-    // this.isLoggedIn = this.authenticationService.isUserLoggedIn();
-    // console.log('menu ->' + this.isLoggedIn);
-  }
 
-  handleLogout() {
-    // this.authenticationService.logout();
+    ngOnInit(): void {
+      this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+      if (this.isLoggedIn) {
+        const user = this.tokenStorageService.getUser();
+        this.roles = user.roles;
+
+        this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+        this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+        this.username = user.username;
+      }
+    }
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
 
 }

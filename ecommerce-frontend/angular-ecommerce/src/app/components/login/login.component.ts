@@ -19,7 +19,10 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
 
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService,
+              private router: Router,
+              private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -43,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
         this.reloadPage();
+        this.router.navigate(['/product'], { relativeTo: this.route });
       },
       err => {
         this.errorMessage = err.error.message;
