@@ -17,6 +17,7 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 // import { HttpInterceptorService } from './services/http-interceptor.service';
 
 //when path matches, create new instance of componenet順序性有意義 會從第一個開始找
@@ -28,6 +29,7 @@ import { LoginComponent } from './components/login/login.component';
 //而<router-outlet> 標籤。該元素會通知 Angular，你可以用所選路由的元件更新應用的檢視。
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -51,7 +53,8 @@ const routes: Routes = [
     CartStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     //上面搬下來的
