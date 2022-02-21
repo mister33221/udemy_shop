@@ -57,23 +57,33 @@
                   </button>
                 </form>
                 -->
-                        <form class="form-header" *ngIf="!isLoggedIn">
-                            <button class="au-btn-submit">
-                              <a routerLink="/login" routerLintActive="active-link">Log In</a>
-                            </button>
-                        </form>
-                        <form class="form-header" *ngIf="!isLoggedIn">
-                            <button class="au-btn-submit">
-                            <a routerLink="/register" routerLintActive="active-link">Register</a>
-                          </button>
-                        </form>
-                        <form class="form-header" *ngIf="isLoggedIn">
-                            <button class="au-btn-submit" (click)="logout()">
-                          Log Out
-                          </button>
-                        </form>
 
-                        <app-cart-status></app-cart-status>
+                        <div>
+                            <app-cart-status style="float: right;"></app-cart-status>
+                            <!-- <div class="au-btn-submit">
+                                <a href="/profile" class="" routerLink="profile" style="color: black; float: right;">登入者-{{ username }}</a>
+                            </div> -->
+
+                            <form class="au-btn-submit " *ngIf="!isLoggedInTest" style="float: right;text-align: center; line-height: 43px; margin-top: 8px;">
+                                <button class="">
+                                <a routerLink="/login" routerLintActive="active-link" style="color: white;">Log In</a>
+                              </button>
+                            </form>
+                            <form class="au-btn-submit" *ngIf="!isLoggedInTest" style="float: right;text-align: center;line-height: 43px; margin-top: 8px;">
+                                <button class="">
+                                <a routerLink="/register" routerLintActive="active-link" style="color: white;">Register</a>
+                              </button>
+                            </form>
+
+                            <form class="au-btn-submit" *ngIf="isLoggedInTest" style="float: right;text-align: center;line-height: 43px;margin-top: 8px;">
+                                <button class="" (click)="logout()" style="color: white;"> Log Out </button>
+                            </form>
+
+                            <form *ngIf="isLoggedInTest" class="" style="float: right;text-align: center;line-height: 43px; margin-right: 10px;margin-top: 8px;">
+                                <a routerLink="/userInfo" routerLintActive="active-link" style="color: white;">登入者-{{ loggedInNameTest }}</a>
+                                <button class="" style="color: black;"></button>
+                            </form>
+                        </div>
 
 
                     </div>

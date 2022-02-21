@@ -18,6 +18,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+import { authInterceptorProviders, TokenInterceptorService } from './services/tokenInterceptor/token-interceptor.service';
 // import { HttpInterceptorService } from './services/http-interceptor.service';
 
 //when path matches, create new instance of componenet順序性有意義 會從第一個開始找
@@ -37,6 +39,7 @@ const routes: Routes = [
   {path: 'category/:id', component: ProductListComponent},
   {path: 'category', component: ProductListComponent},
   {path: 'products', component: ProductListComponent},
+  {path: 'userInfo', component: UserInfoComponent},
   {path: '', redirectTo:'/products', pathMatch:'full'},
   {path: '**', redirectTo:'/products', pathMatch:'full'}
 ];
@@ -54,7 +57,8 @@ const routes: Routes = [
     CartDetailsComponent,
     CheckoutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserInfoComponent
   ],
   imports: [
     //上面搬下來的
@@ -69,6 +73,7 @@ const routes: Routes = [
   ],
   providers: [
     ProductService,
+    authInterceptorProviders
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: HttpInterceptorService,
