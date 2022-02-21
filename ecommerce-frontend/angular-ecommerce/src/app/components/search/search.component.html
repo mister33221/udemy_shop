@@ -1,11 +1,9 @@
-<form class="form-header" >
+<form class="form-header">
 
-    <input #myInput type="text" 
-            placeholder="Search for data ..." 
-            class="au-input au-input-xl"           
-            (keyup.enter)="doSearch(myInput.value)" />
-    
-    <button (click)="doSearch(myInput.value)" class="au-btn-submit" >
+    <!--暫時拿掉這個class不然太長 但之前不會 不知道改到哪裡  au-input-xl-->
+    <input #myInput type="text" placeholder="Search for data ..." class="au-input au-input-xl" (keyup.enter)="doSearch(myInput.value)" />
+
+    <button (click)="doSearch(myInput.value)" class="au-btn-submit">
      Search
     </button>
 
