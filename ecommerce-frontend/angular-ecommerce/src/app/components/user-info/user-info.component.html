@@ -1,0 +1,32 @@
+<div class="container col-lg-6" style="padding-top: 100px; padding-bottom: 85px;">
+
+    <div class="card card-container">
+        <header class="jumbotron">
+            <h3>
+                <strong>{{ currentUser.username }}</strong> Profile
+            </h3>
+        </header>
+        <p style="margin-left: 30px;">
+            <strong>Token:</strong> {{ currentUser.accessToken.substring(0, 20) }} ... {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+        </p>
+        <p style="margin-left: 30px;">
+            <strong>Email:</strong> {{ currentUser.email }}
+        </p>
+        <strong style="margin-left: 30px;">Roles:</strong>
+        <ul style="margin-left: 50px;">
+            <li *ngFor="let role of currentUser.roles">
+                {{ role }}
+            </li>
+        </ul>
+    </div>
+
+</div>
+<div class="container">
+    <header class="jumbotron">
+        <p>{{ content }}</p>
+    </header>
+</div>
+
+<ng-template #loggedOut>
+    Please login.
+</ng-template>
